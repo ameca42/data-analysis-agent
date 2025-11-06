@@ -1,0 +1,49 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# 虚拟环境
+venv/
+env/
+ENV/
+.venv/
+
+# ===== 数据库 =====
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# ===== 上传文件 =====
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# ===== 敏感信息 =====
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ===== IDE =====
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ===== 操作系统 =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== 日志 =====
+*.log
+logs/
+
+# ===== 临时文件 =====
+*.tmp
+*.temp
+.cache/
