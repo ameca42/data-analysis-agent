@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from backend.config import get_settings
 from backend.database import engine, Base
-from backend.routers import upload
+from backend.routers import upload, charts
 
 
 # 获取配置实例
@@ -25,6 +25,7 @@ app.add_middleware(
 
 # 注册路由
 app.include_router(upload.router)
+app.include_router(charts.router)
 
 
 # 定义一个测试接口
