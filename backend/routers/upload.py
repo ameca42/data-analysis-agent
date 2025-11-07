@@ -4,7 +4,7 @@ from typing import List, Optional
 import os
 import shutil
 from datetime import datetime
-import pandas as pd
+import duckdb
 from pathlib import Path
 
 from backend.database import get_db
@@ -104,7 +104,13 @@ def save_upload_file(file: UploadFile) -> tuple[str, int]:
 
 def analyze_dataset(file_path: str) -> dict:
     """
-    分析数据集，提取元数据
+    使用 DuckDB 分析数据集，提取元数据
+
+    DuckDB 优势：
+    - 更快的查询速度
+    - 更低的内存占用
+    - 原生 SQL 支持
+    - 直接读取多种格式
 
     提取信息：
     1. 行数
@@ -120,42 +126,104 @@ def analyze_dataset(file_path: str) -> dict:
     file_ext = Path(file_path).suffix.lower()
 
     try:
-        # 根据文件类型读取数据
+        # 创建 DuckDB 连接（内存模式）
+        conn = duckdb.connect(':memory:')
+
+        # 根据文件类型读取数据到 DuckDB
         if file_ext == '.csv':
-            df = pd.read_csv(file_path)
+            # DuckDB 可以直接读取 CSV
+            conn.execute(f"CREATE TABLE data AS SELECT * FROM read_csv_auto('{file_path}')")
         elif file_ext in ['.xlsx', '.xls']:
-            df = pd.read_excel(file_path)
+            # Excel 需要先用 openpyxl 读取，但 DuckDB 0.9+ 支持直接读取
+            # 这里使用临时方案：先转 CSV 再读取
+            import openpyxl
+            import csv
+            import tempfile
+
+            # 读取 Excel 第一个 sheet
+            wb = openpyxl.load_workbook(file_path, read_only=True)
+            ws = wb.active
+
+            # 写入临时 CSV
+            with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.csv', newline='', encoding='utf-8') as tmp:
+                csv_writer = csv.writer(tmp)
+                for row in ws.iter_rows(values_only=True):
+                    csv_writer.writerow(row)
+                tmp_path = tmp.name
+
+            # 用 DuckDB 读取临时 CSV
+            conn.execute(f"CREATE TABLE data AS SELECT * FROM read_csv_auto('{tmp_path}')")
+            os.remove(tmp_path)
+            wb.close()
+
         elif file_ext == '.json':
-            df = pd.read_json(file_path)
+            # DuckDB 可以直接读取 JSON
+            conn.execute(f"CREATE TABLE data AS SELECT * FROM read_json_auto('{file_path}')")
         elif file_ext == '.parquet':
-            df = pd.read_parquet(file_path)
+            # DuckDB 原生支持 Parquet
+            conn.execute(f"CREATE TABLE data AS SELECT * FROM read_parquet('{file_path}')")
         else:
             raise ValueError(f"不支持的文件类型: {file_ext}")
 
-        # 提取 schema 信息
+        # 获取行数
+        row_count = conn.execute("SELECT COUNT(*) FROM data").fetchone()[0]
+
+        # 获取列信息
+        columns_info = conn.execute("DESCRIBE data").fetchall()
+
         schema = []
-        for col in df.columns:
+        for col_name, col_type, null_info, *_ in columns_info:
+            # 获取该列的统计信息
+            stats_query = f"""
+                SELECT
+                    COUNT({col_name}) as non_null_count,
+                    COUNT(*) - COUNT({col_name}) as null_count,
+                    COUNT(DISTINCT {col_name}) as unique_count
+                FROM data
+            """
+            non_null_count, null_count, unique_count = conn.execute(stats_query).fetchone()
+
             col_info = {
-                "name": col,
-                "dtype": str(df[col].dtype),
-                "non_null_count": int(df[col].count()),
-                "null_count": int(df[col].isna().sum()),
-                "unique_count": int(df[col].nunique())
+                "name": col_name,
+                "dtype": col_type,
+                "non_null_count": int(non_null_count),
+                "null_count": int(null_count),
+                "unique_count": int(unique_count)
             }
 
             # 如果是数值类型，添加统计信息
-            if pd.api.types.is_numeric_dtype(df[col]):
-                col_info.update({
-                    "min": float(df[col].min()) if not pd.isna(df[col].min()) else None,
-                    "max": float(df[col].max()) if not pd.isna(df[col].max()) else None,
-                    "mean": float(df[col].mean()) if not pd.isna(df[col].mean()) else None,
-                })
+            numeric_types = ['BIGINT', 'INTEGER', 'SMALLINT', 'TINYINT',
+                           'DOUBLE', 'FLOAT', 'DECIMAL', 'NUMERIC', 'HUGEINT']
+
+            if any(num_type in col_type.upper() for num_type in numeric_types):
+                try:
+                    stats_query = f"""
+                        SELECT
+                            MIN({col_name}) as min_val,
+                            MAX({col_name}) as max_val,
+                            AVG({col_name}) as mean_val
+                        FROM data
+                        WHERE {col_name} IS NOT NULL
+                    """
+                    min_val, max_val, mean_val = conn.execute(stats_query).fetchone()
+
+                    col_info.update({
+                        "min": float(min_val) if min_val is not None else None,
+                        "max": float(max_val) if max_val is not None else None,
+                        "mean": float(mean_val) if mean_val is not None else None,
+                    })
+                except Exception as e:
+                    # 如果统计失败，跳过
+                    pass
 
             schema.append(col_info)
 
+        # 关闭连接
+        conn.close()
+
         return {
             "schema_json": schema,
-            "row_count": len(df)
+            "row_count": row_count
         }
 
     except Exception as e:
