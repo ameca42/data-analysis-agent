@@ -1,0 +1,14 @@
+{
+  "name": "data-analysis-agent",
+  "version": "1.0.0",
+  "description": "数据分析 Agent - 智能数据分析平台",
+  "scripts": {
+    "frontend": "cd frontend && npm run dev",
+    "backend": "uvicorn backend.main:app --reload",
+    "install": "cd frontend && npm install && cd .. && pip install -r requirements.txt",
+    "test": "python test_upload.py"
+  },
+  "keywords": ["data-analysis", "fastapi", "react"],
+  "author": "",
+  "license": "MIT"
+}

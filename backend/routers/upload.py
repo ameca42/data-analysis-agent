@@ -1,6 +1,6 @@
-from fastapi import APIRouter, UploadFile, File, HTTPException, Depends
+from fastapi import APIRouter, UploadFile, File, HTTPException, Depends, Form
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Optional
 import os
 import shutil
 from datetime import datetime
@@ -168,8 +168,8 @@ def analyze_dataset(file_path: str) -> dict:
 @router.post("/", response_model=DatasetResponse)
 async def upload_file(
     file: UploadFile = File(...),
-    name: str = None,
-    description: str = None,
+    name: Optional[str] = Form(None),
+    description: Optional[str] = Form(None),
     db: Session = Depends(get_db)
 ):
     """

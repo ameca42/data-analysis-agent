@@ -1,0 +1,248 @@
+.dataset-list-container {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.list-header h2 {
+  color: #333;
+  font-size: 24px;
+  margin: 0;
+}
+
+.refresh-button {
+  padding: 10px 20px;
+  background: #f7fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #4a5568;
+}
+
+.refresh-button:hover {
+  background: #edf2f7;
+  border-color: #cbd5e0;
+}
+
+/* 加载和错误状态 */
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #718096;
+  font-size: 18px;
+}
+
+.retry-button {
+  padding: 12px 24px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.empty-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+}
+
+.empty-text {
+  font-size: 20px;
+  color: #4a5568;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.empty-hint {
+  font-size: 16px;
+  color: #718096;
+}
+
+/* 数据集网格 */
+.datasets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* 数据集卡片 */
+.dataset-card {
+  background: #f7fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.dataset-card:hover {
+  border-color: #667eea;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+  transform: translateY(-4px);
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.file-type-icon {
+  font-size: 36px;
+  flex-shrink: 0;
+}
+
+.card-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-title h3 {
+  margin: 0 0 4px 0;
+  color: #2d3748;
+  font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dataset-id {
+  font-size: 12px;
+  color: #a0aec0;
+  font-weight: 500;
+}
+
+.dataset-description {
+  margin: 0;
+  color: #718096;
+  font-size: 14px;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 统计信息 */
+.dataset-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 15px 0;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #a0aec0;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 18px;
+  color: #2d3748;
+  font-weight: 700;
+}
+
+/* 元数据 */
+.dataset-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: #718096;
+}
+
+.file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.created-date {
+  color: #a0aec0;
+}
+
+/* 卡片操作按钮 */
+.card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.card-actions button {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-view {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-view:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.btn-delete {
+  background: white;
+  color: #e53e3e;
+  border: 2px solid #fc8181;
+}
+
+.btn-delete:hover {
+  background: #fff5f5;
+  border-color: #e53e3e;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .datasets-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .list-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}
