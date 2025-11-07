@@ -14,8 +14,10 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>🤖 数据分析 Agent</h1>
-        <p className="app-subtitle">智能数据分析与可视化平台</p>
+        <div className="app-header-content">
+          <h1>数据分析 Agent</h1>
+          <p className="app-subtitle">智能数据分析与可视化平台</p>
+        </div>
       </header>
 
       <main className="app-main">

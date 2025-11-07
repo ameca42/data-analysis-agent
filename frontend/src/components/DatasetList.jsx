@@ -84,7 +84,7 @@ const DatasetList = ({ refreshTrigger }) => {
   if (loading) {
     return (
       <div className="dataset-list-container">
-        <h2>📚 数据集列表</h2>
+        <h2>数据集列表</h2>
         <div className="loading">加载中...</div>
       </div>
     );
@@ -93,8 +93,8 @@ const DatasetList = ({ refreshTrigger }) => {
   if (error) {
     return (
       <div className="dataset-list-container">
-        <h2>📚 数据集列表</h2>
-        <div className="error-message">❌ {error}</div>
+        <h2>数据集列表</h2>
+        <div className="error-message">{error}</div>
         <button onClick={loadDatasets} className="retry-button">
           重试
         </button>
@@ -105,9 +105,9 @@ const DatasetList = ({ refreshTrigger }) => {
   return (
     <div className="dataset-list-container">
       <div className="list-header">
-        <h2>📚 数据集列表</h2>
+        <h2>数据集列表</h2>
         <button onClick={loadDatasets} className="refresh-button">
-          🔄 刷新
+          刷新
         </button>
       </div>
 

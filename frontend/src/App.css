@@ -5,49 +5,68 @@
 }
 
 .app-header {
-  text-align: center;
-  padding: 40px 20px 30px;
-  color: white;
+  background: var(--cardBg);
+  border-bottom: 1px solid var(--color-gray-medium);
+  padding: var(--spacing-lg) var(--bodyGutter);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: saturate(180%) blur(20px);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.app-header-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
 }
 
 .app-header h1 {
-  font-size: 48px;
-  margin-bottom: 10px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  font-weight: 700;
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--textPrimary);
+  margin-bottom: var(--spacing-xs);
 }
 
 .app-subtitle {
-  font-size: 18px;
-  opacity: 0.95;
-  margin: 0;
+  font-size: var(--font-size-lg);
+  color: var(--textSecondary);
   font-weight: 400;
+  letter-spacing: 0.007em;
 }
 
 .app-main {
   flex: 1;
-  max-width: 1200px;
+  max-width: var(--max-width);
   width: 100%;
   margin: 0 auto;
-  padding: 0 20px 40px;
+  padding: var(--spacing-3xl) var(--bodyGutter);
 }
 
 .app-footer {
+  background: var(--footerBg);
+  border-top: 1px solid var(--color-gray-medium);
+  padding: var(--spacing-lg) var(--bodyGutter);
   text-align: center;
-  padding: 20px;
-  color: white;
-  font-size: 14px;
-  opacity: 0.8;
-  margin-top: 40px;
+}
+
+.app-footer p {
+  font-size: var(--font-size-xs);
+  color: var(--textSecondary);
+  font-weight: 400;
 }
 
 /* 响应式 */
 @media (max-width: 768px) {
   .app-header h1 {
-    font-size: 36px;
+    font-size: var(--font-size-xl);
   }
 
   .app-subtitle {
-    font-size: 16px;
+    font-size: var(--font-size-base);
+  }
+
+  .app-main {
+    padding: var(--spacing-2xl) var(--bodyGutter);
   }
 }

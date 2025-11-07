@@ -102,7 +102,7 @@ const FileUpload = ({ onUploadSuccess }) => {
 
   return (
     <div className="file-upload-container">
-      <h2>📤 上传数据文件</h2>
+      <h2>上传数据文件</h2>
 
       <form onSubmit={handleUpload} className="upload-form">
         {/* 拖拽区域 */}

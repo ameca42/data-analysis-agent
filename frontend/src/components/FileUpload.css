@@ -1,79 +1,83 @@
 .file-upload-container {
-  background: white;
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
+  background: var(--cardBg);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--spacing-2xl);
+  border: 1px solid var(--color-gray-medium);
 }
 
 .file-upload-container h2 {
-  margin-bottom: 25px;
-  color: #333;
-  font-size: 24px;
+  margin-bottom: var(--spacing-lg);
+  color: var(--textPrimary);
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  letter-spacing: -0.005em;
 }
 
 .upload-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--spacing-lg);
 }
 
-/* 拖拽区域 */
+/* 拖拽区域 - Apple 风格 */
 .drop-zone {
-  border: 3px dashed #cbd5e0;
-  border-radius: 12px;
-  padding: 50px 20px;
+  border: 2px dashed var(--color-gray-medium);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-3xl) var(--spacing-xl);
   text-align: center;
   cursor: pointer;
-  transition: all 0.3s ease;
-  background: #f7fafc;
+  transition: all 0.2s ease;
+  background: var(--pageBg);
 }
 
 .drop-zone:hover {
-  border-color: #667eea;
-  background: #edf2f7;
+  border-color: var(--systemBlue);
+  background: rgba(0, 122, 255, 0.04);
 }
 
 .drop-zone.active {
-  border-color: #667eea;
-  background: #e6f0ff;
-  transform: scale(1.02);
+  border-color: var(--systemBlue);
+  background: rgba(0, 122, 255, 0.08);
+  border-style: solid;
 }
 
 .drop-zone.has-file {
-  border-color: #48bb78;
-  background: #f0fff4;
+  border-color: var(--systemGreen);
+  background: rgba(52, 199, 89, 0.04);
 }
 
 .upload-icon {
-  font-size: 64px;
-  margin-bottom: 15px;
+  font-size: 56px;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.6;
 }
 
 .drop-text {
-  font-size: 18px;
-  color: #4a5568;
-  margin-bottom: 8px;
+  font-size: var(--font-size-lg);
+  color: var(--textPrimary);
+  margin-bottom: var(--spacing-xs);
   font-weight: 500;
 }
 
 .file-types {
-  font-size: 14px;
-  color: #718096;
+  font-size: var(--font-size-sm);
+  color: var(--textSecondary);
 }
 
 /* 文件信息 */
 .file-info {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 15px;
-  background: white;
-  border-radius: 8px;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--cardBg);
+  border-radius: var(--radius-sm);
 }
 
 .file-icon {
-  font-size: 48px;
+  font-size: 40px;
 }
 
 .file-details {
@@ -82,135 +86,148 @@
 }
 
 .file-name {
-  font-size: 16px;
-  font-weight: 600;
-  color: #2d3748;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--textPrimary);
   margin-bottom: 4px;
 }
 
 .file-size {
-  font-size: 14px;
-  color: #718096;
+  font-size: var(--font-size-sm);
+  color: var(--textSecondary);
 }
 
 .remove-file {
-  background: #fc8181;
-  color: white;
+  background: var(--systemRed);
+  color: var(--color-white);
   border: none;
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  font-size: 18px;
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
   cursor: pointer;
   transition: all 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0.9;
 }
 
 .remove-file:hover {
-  background: #f56565;
-  transform: scale(1.1);
+  opacity: 1;
+  transform: scale(1.05);
 }
 
 /* 进度条 */
 .progress-container {
-  margin: 10px 0;
+  margin: var(--spacing-md) 0;
 }
 
 .progress-bar {
   width: 100%;
-  height: 8px;
-  background: #e2e8f0;
-  border-radius: 4px;
+  height: 4px;
+  background: var(--color-gray-medium);
+  border-radius: 2px;
   overflow: hidden;
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-sm);
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: var(--systemBlue);
   transition: width 0.3s ease;
 }
 
 .progress-text {
   text-align: center;
-  font-size: 14px;
-  font-weight: 600;
-  color: #667eea;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--systemBlue);
 }
 
 /* 表单组 */
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-xs);
 }
 
 .form-group label {
-  font-size: 14px;
-  font-weight: 600;
-  color: #4a5568;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--textPrimary);
 }
 
 .form-group input,
 .form-group textarea {
-  padding: 12px 16px;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 15px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-gray-medium);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-base);
+  font-family: var(--font-sf-pro);
   transition: all 0.2s;
-  font-family: inherit;
+  background: var(--cardBg);
+  color: var(--textPrimary);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: var(--systemBlue);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
 }
 
 .form-group input:disabled,
 .form-group textarea:disabled {
-  background: #f7fafc;
+  background: var(--pageBg);
   cursor: not-allowed;
+  opacity: 0.6;
 }
 
 /* 错误信息 */
 .error-message {
-  padding: 12px 16px;
-  background: #fff5f5;
-  border: 1px solid #fc8181;
-  border-radius: 8px;
-  color: #c53030;
-  font-size: 14px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: rgba(255, 59, 48, 0.1);
+  border: 1px solid var(--systemRed);
+  border-radius: var(--radius-sm);
+  color: var(--systemRed);
+  font-size: var(--font-size-sm);
 }
 
-/* 上传按钮 */
+/* 上传按钮 - Apple 风格 */
 .upload-button {
-  padding: 14px 28px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  padding: var(--spacing-sm) var(--spacing-xl);
+  background: var(--systemBlue);
+  color: var(--color-white);
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  transition: all 0.2s;
+  box-shadow: var(--shadow-sm);
 }
 
 .upload-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  background: var(--color-blue-dark);
+  box-shadow: var(--shadow-md);
 }
 
 .upload-button:active:not(:disabled) {
-  transform: translateY(0);
+  transform: scale(0.98);
 }
 
 .upload-button:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
-  transform: none;
+}
+
+@media (max-width: 768px) {
+  .file-upload-container {
+    padding: var(--spacing-lg);
+  }
+
+  .drop-zone {
+    padding: var(--spacing-2xl) var(--spacing-md);
+  }
 }
