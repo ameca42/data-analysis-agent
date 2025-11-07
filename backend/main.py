@@ -1,12 +1,30 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from backend.config import get_settings
+from backend.database import engine, Base
+from backend.routers import upload
 
 
 # 获取配置实例
 settings = get_settings()
 
+# 创建数据库表
+Base.metadata.create_all(bind=engine)
+
 # 创建 FastAPI 应用
 app = FastAPI(title="数据分析 Agent", debug=settings.debug)
+
+# 配置 CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.allowed_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# 注册路由
+app.include_router(upload.router)
 
 
 # 定义一个测试接口
