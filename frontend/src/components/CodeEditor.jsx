@@ -7,28 +7,24 @@ const CodeEditor = () => {
     {
       id: 'python',
       name: 'Python Agent',
-      icon: 'Py',
       color: '#3776ab',
       description: 'Python 数据分析专家'
     },
     {
       id: 'sql',
       name: 'SQL Agent',
-      icon: 'SQL',
       color: '#00758f',
       description: 'SQL 数据库查询专家'
     },
     {
       id: 'visualization',
       name: 'Visualization Agent',
-      icon: 'Viz',
       color: '#ff6f61',
       description: '数据可视化专家'
     },
     {
       id: 'ml',
       name: 'ML Agent',
-      icon: 'ML',
       color: '#7b68ee',
       description: '机器学习专家'
     }
@@ -187,27 +183,27 @@ const CodeEditor = () => {
             </div>
           ))
         )}
+      </div>
 
-        {/* 底部操作栏 */}
-        <div className="editor-footer">
-          <div className="editor-global-actions">
-            <button className="add-cell-btn" onClick={addNewCell}>
-              <span className="add-icon">+</span>
-              Add Cell
-            </button>
-            <button className="agent-action-btn">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-              </svg>
-              Run All
-            </button>
-            <button className="agent-action-btn">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-              </svg>
-              Save
-            </button>
-          </div>
+      {/* 底部操作栏 */}
+      <div className="editor-footer">
+        <div className="editor-global-actions">
+          <button className="add-cell-btn" onClick={addNewCell}>
+            <span className="add-icon">+</span>
+            Add Cell
+          </button>
+          <button className="agent-action-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Run All
+          </button>
+          <button className="agent-action-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+            Save
+          </button>
         </div>
       </div>
     </div>
