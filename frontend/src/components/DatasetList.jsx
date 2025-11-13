@@ -53,13 +53,13 @@ const DatasetList = ({ refreshTrigger }) => {
   // 获取文件类型图标
   const getFileIcon = (fileType) => {
     const icons = {
-      '.csv': '📊',
-      '.xlsx': '📗',
-      '.xls': '📗',
-      '.json': '📋',
-      '.parquet': '📦'
+      '.csv': 'CSV',
+      '.xlsx': 'XLSX',
+      '.xls': 'XLS',
+      '.json': 'JSON',
+      '.parquet': 'PARQUET'
     };
-    return icons[fileType] || '📄';
+    return icons[fileType] || 'FILE';
   };
 
   // 删除数据集
@@ -113,7 +113,7 @@ const DatasetList = ({ refreshTrigger }) => {
 
       {datasets.length === 0 ? (
         <div className="empty-state">
-          <p className="empty-icon">📭</p>
+          <p className="empty-icon">Empty</p>
           <p className="empty-text">还没有上传任何数据集</p>
           <p className="empty-hint">上传第一个文件开始数据分析吧！</p>
         </div>
@@ -152,10 +152,10 @@ const DatasetList = ({ refreshTrigger }) => {
 
               <div className="dataset-meta">
                 <span className="file-name" title={dataset.original_filename}>
-                  📎 {dataset.original_filename}
+                  File: {dataset.original_filename}
                 </span>
                 <span className="created-date">
-                  🕒 {formatDate(dataset.created_at)}
+                  Created: {formatDate(dataset.created_at)}
                 </span>
               </div>
 

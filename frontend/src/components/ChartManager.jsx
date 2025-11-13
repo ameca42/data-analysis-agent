@@ -105,13 +105,13 @@ const ChartManager = ({ dataset }) => {
   // 获取图表类型图标
   const getChartTypeIcon = (chartType) => {
     const icons = {
-      'bar': '📊',
-      'pie': '🥧',
-      'timeseries': '📈',
-      'distribution': '📉',
-      'heatmap': '🔥'
+      'bar': 'Bar',
+      'pie': 'Pie',
+      'timeseries': 'TS',
+      'distribution': 'Dist',
+      'heatmap': 'Heat'
     };
-    return icons[chartType] || '📊';
+    return icons[chartType] || 'Chart';
   };
 
   // 获取图表类型名称
@@ -128,11 +128,6 @@ const ChartManager = ({ dataset }) => {
 
   return (
     <div className="chart-manager">
-      <div className="chart-manager-header">
-        <h2>📊 图表分析</h2>
-        <p>为数据集 "{dataset?.name}" 创建和管理可视化图表</p>
-      </div>
-
       {/* 标签页 */}
       <div className="chart-tabs">
         <button
@@ -183,7 +178,7 @@ const ChartManager = ({ dataset }) => {
               </div>
             ) : savedCharts.length === 0 ? (
               <div className="gallery-empty">
-                <div className="empty-icon">📊</div>
+                <div className="empty-icon">Chart</div>
                 <h3>还没有保存的图表</h3>
                 <p>创建你的第一个图表开始数据分析吧！</p>
                 <button

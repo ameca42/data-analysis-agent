@@ -27,11 +27,11 @@ const ChartConfig = ({ dataset, onGenerateChart, loading, chartData }) => {
 
   // 图表类型配置
   const chartTypes = [
-    { value: 'bar', label: '柱状图', icon: '📊', description: '按类别显示数值对比' },
-    { value: 'pie', label: '饼图', icon: '🥧', description: '显示各部分占比' },
-    { value: 'timeseries', label: '时间序列', icon: '📈', description: '显示数据随时间变化' },
-    { value: 'distribution', label: '分布图', icon: '📉', description: '显示数值分布情况' },
-    { value: 'heatmap', label: '热力图', icon: '🔥', description: '显示数值相关性' },
+    { value: 'bar', label: '柱状图', icon: 'Bar', description: '按类别显示数值对比' },
+    { value: 'pie', label: '饼图', icon: 'Pie', description: '显示各部分占比' },
+    { value: 'timeseries', label: '时间序列', icon: 'TS', description: '显示数据随时间变化' },
+    { value: 'distribution', label: '分布图', icon: 'Dist', description: '显示数值分布情况' },
+    { value: 'heatmap', label: '热力图', icon: 'Heat', description: '显示数值相关性' },
   ];
 
   // 图表参数配置
@@ -169,7 +169,7 @@ const ChartConfig = ({ dataset, onGenerateChart, loading, chartData }) => {
     <div className="chart-config-container">
       <div className="config-header">
         <h3>图表配置</h3>
-        <p className="config-description">为数据集 "{dataset?.name}" 创建可视化图表</p>
+        <p className="config-description">为数据集 {dataset?.name} 创建可视化图表</p>
       </div>
 
       {/* 图表类型选择 */}

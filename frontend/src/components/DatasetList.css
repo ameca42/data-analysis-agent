@@ -1,9 +1,11 @@
 .dataset-list-container {
-  /* 移除旧样式，让组件自然扩展 */
-  min-height: 0; /* 重要：允许flex子元素缩小 */
+  /* 让组件在模态框中正确显示 */
   flex: 1; /* 占满父容器 */
   display: flex;
   flex-direction: column;
+  min-height: 0; /* 允许flex子元素缩小 */
+  overflow: hidden;
+  height: 100%;
 }
 
 .list-header {
@@ -12,11 +14,11 @@
   align-items: center;
   margin-bottom: var(--spacing-xl);
   padding-bottom: var(--spacing-md);
-  border-bottom: 1px solid var(--color-gray-medium);
+  border-bottom: 1px solid var(--strokeColor);
 }
 
 .list-header h2 {
-  color: var(--textPrimary);
+  color: var(--systemPrimary);
   font-size: var(--font-size-xl);
   font-weight: 600;
   letter-spacing: -0.005em;
@@ -24,37 +26,37 @@
 }
 
 .refresh-button {
-  padding: var(--spacing-xs) var(--spacing-md);
-  background: var(--pageBg);
-  border: 1px solid var(--color-gray-medium);
-  border-radius: var(--radius-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--pageBG);
+  border: 1px solid var(--strokeColor);
+  border-radius: var(--radius-xl);
   font-size: var(--font-size-sm);
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
-  color: var(--textPrimary);
+  color: var(--systemPrimary);
 }
 
 .refresh-button:hover {
-  background: var(--color-gray-light);
-  border-color: var(--color-gray);
+  background: var(--systemGray5);
+  border-color: var(--systemGray2);
 }
 
 /* 加载和错误状态 */
 .loading {
   text-align: center;
   padding: var(--spacing-3xl) var(--spacing-lg);
-  color: var(--textSecondary);
+  color: var(--systemSecondary);
   font-size: var(--font-size-lg);
 }
 
 .retry-button {
-  padding: var(--spacing-sm) var(--spacing-xl);
+  padding: var(--spacing-xs) var(--spacing-md);
   background: var(--systemBlue);
-  color: var(--color-white);
+  color: white;
   border: none;
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-base);
+  border-radius: var(--radius-xl);
+  font-size: var(--font-size-sm);
   font-weight: 500;
   cursor: pointer;
   margin-top: var(--spacing-md);
@@ -74,14 +76,14 @@
 
 .empty-text {
   font-size: var(--font-size-xl);
-  color: var(--textPrimary);
+  color: var(--systemPrimary);
   margin-bottom: var(--spacing-xs);
   font-weight: 600;
 }
 
 .empty-hint {
   font-size: var(--font-size-base);
-  color: var(--textSecondary);
+  color: var(--systemSecondary);
 }
 
 /* 数据集网格 */
@@ -89,15 +91,38 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: var(--spacing-lg);
-  max-height: calc(100% - 80px); /* 减去头部和间距的高度 */
+  flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: var(--spacing-lg); /* 底部留一些空间 */
+}
+
+/* 为 datasets-grid 添加自定义滚动条样式 */
+.datasets-grid::-webkit-scrollbar {
+  width: 6px;
+}
+
+.datasets-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.datasets-grid::-webkit-scrollbar-thumb {
+  background: var(--systemGray4);
+  border-radius: var(--radius-2xl);
+  border: 1px solid transparent;
+  background-clip: content-box;
+}
+
+.datasets-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--systemGray3);
+  background-clip: content-box;
 }
 
 /* 数据集卡片 - Apple 风格 */
 .dataset-card {
-  background: var(--pageBg);
-  border: 1px solid var(--color-gray-medium);
-  border-radius: var(--radius-md);
+  background: var(--pageBG);
+  border: 1px solid var(--strokeColor);
+  border-radius: var(--radius-2xl);
   padding: var(--spacing-lg);
   transition: all 0.2s;
   display: flex;
@@ -106,7 +131,7 @@
 }
 
 .dataset-card:hover {
-  border-color: var(--color-gray);
+  border-color: var(--systemGray2);
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
@@ -129,7 +154,7 @@
 
 .card-title h3 {
   margin: 0 0 4px 0;
-  color: var(--textPrimary);
+  color: var(--systemPrimary);
   font-size: var(--font-size-lg);
   font-weight: 600;
   overflow: hidden;
@@ -139,13 +164,13 @@
 
 .dataset-id {
   font-size: var(--font-size-xs);
-  color: var(--textSecondary);
+  color: var(--systemSecondary);
   font-weight: 400;
 }
 
 .dataset-description {
   margin: 0;
-  color: var(--textSecondary);
+  color: var(--systemSecondary);
   font-size: var(--font-size-sm);
   line-height: 1.5;
   display: -webkit-box;
@@ -160,8 +185,8 @@
   grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-sm);
   padding: var(--spacing-md) 0;
-  border-top: 1px solid var(--color-gray-medium);
-  border-bottom: 1px solid var(--color-gray-medium);
+  border-top: 1px solid var(--strokeColor);
+  border-bottom: 1px solid var(--strokeColor);
 }
 
 .stat {
@@ -173,7 +198,7 @@
 
 .stat-label {
   font-size: var(--font-size-xs);
-  color: var(--textSecondary);
+  color: var(--systemSecondary);
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -181,7 +206,7 @@
 
 .stat-value {
   font-size: var(--font-size-lg);
-  color: var(--textPrimary);
+  color: var(--systemPrimary);
   font-weight: 600;
 }
 
@@ -191,7 +216,7 @@
   flex-direction: column;
   gap: 6px;
   font-size: var(--font-size-sm);
-  color: var(--textSecondary);
+  color: var(--systemSecondary);
 }
 
 .file-name {
@@ -201,7 +226,7 @@
 }
 
 .created-date {
-  color: var(--textSecondary);
+  color: var(--systemSecondary);
 }
 
 /* 卡片操作按钮 */
@@ -213,34 +238,36 @@
 }
 
 .card-actions button {
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-lg); /* rounded-lg */
   font-size: var(--font-size-sm);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-view {
-  background: var(--systemBlue);
-  color: var(--color-white);
+  background: #3b82f6; /* bg-blue-500 */
+  color: white;
 }
 
 .btn-view:hover {
-  background: var(--color-blue-dark);
-  box-shadow: var(--shadow-sm);
+  background: #2563eb; /* hover:bg-blue-600 */
+  color: white;
 }
 
 .btn-delete {
-  background: var(--cardBg);
-  color: var(--systemRed);
-  border: 1px solid var(--color-gray-medium);
+  background: #3b82f6; /* bg-blue-500 */
+  color: white;
 }
 
 .btn-delete:hover {
-  background: rgba(255, 59, 48, 0.1);
-  border-color: var(--systemRed);
+  background: #2563eb; /* hover:bg-blue-600 */
+  color: white;
 }
 
 /* 响应式 */

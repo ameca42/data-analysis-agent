@@ -7,28 +7,28 @@ const CodeEditor = () => {
     {
       id: 'python',
       name: 'Python Agent',
-      icon: '🐍',
+      icon: 'Py',
       color: '#3776ab',
       description: 'Python 数据分析专家'
     },
     {
       id: 'sql',
       name: 'SQL Agent',
-      icon: '🗃️',
+      icon: 'SQL',
       color: '#00758f',
       description: 'SQL 数据库查询专家'
     },
     {
       id: 'visualization',
       name: 'Visualization Agent',
-      icon: '📊',
+      icon: 'Viz',
       color: '#ff6f61',
       description: '数据可视化专家'
     },
     {
       id: 'ml',
       name: 'ML Agent',
-      icon: '🤖',
+      icon: 'ML',
       color: '#7b68ee',
       description: '机器学习专家'
     }
@@ -55,7 +55,7 @@ const CodeEditor = () => {
       {
         id: 1,
         code: "# 数据可视化示例\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport plotly.express as px\n\n# 设置绘图风格\nplt.style.use('seaborn-v0_8')\nsns.set_palette(\"husl\")\n\n# 创建子图\nfig, axes = plt.subplots(2, 2, figsize=(15, 12))\nfig.suptitle('数据分析可视化', fontsize=16, fontweight='bold')\n\n# 1. 时间序列图\naxes[0, 0].plot(df['date'], df['value'])\naxes[0, 0].set_title('时间序列趋势')\naxes[0, 0].set_xlabel('日期')\naxes[0, 0].set_ylabel('数值')\naxes[0, 0].grid(True, alpha=0.3)",
-        output: "📊 图表输出：\n成功生成了 2x2 的子图布局，包含时间序列图、分布图、相关性热图和分类统计图。",
+        output: "图表输出：\n成功生成了 2x2 的子图布局，包含时间序列图、分布图、相关性热图和分类统计图。",
         isActive: true
       }
     ],
@@ -121,33 +121,6 @@ const CodeEditor = () => {
         </button>
       </div>
 
-      {/* 当前 Agent 信息 */}
-      <div className="agent-info-bar">
-        <div className="agent-details">
-          <span className="agent-current-icon" style={{ color: currentAgent.color }}>
-            {currentAgent.icon}
-          </span>
-          <div>
-            <h3 className="agent-current-name">{currentAgent.name}</h3>
-            <p className="agent-current-description">{currentAgent.description}</p>
-          </div>
-        </div>
-        <div className="agent-actions">
-          <button className="agent-action-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-            运行全部
-          </button>
-          <button className="agent-action-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-            保存
-          </button>
-        </div>
-      </div>
-
       {/* 代码单元区域 */}
       <div className="editor-content">
         {currentNotebooks.length === 0 ? (
@@ -197,7 +170,7 @@ const CodeEditor = () => {
                     </div>
                   </div>
                   <div className="output-content">
-                    {cell.output.includes('📊') ? (
+                    {cell.output.includes('图表输出') ? (
                       <div className="output-chart">
                         <div className="chart-placeholder">
                           {cell.output}
@@ -215,11 +188,27 @@ const CodeEditor = () => {
           ))
         )}
 
-        {/* 添加新单元格按钮 */}
-        <button className="add-cell-btn" onClick={addNewCell}>
-          <span className="add-icon">+</span>
-          添加 {currentAgent.name} 代码单元
-        </button>
+        {/* 底部操作栏 */}
+        <div className="editor-footer">
+          <div className="editor-global-actions">
+            <button className="add-cell-btn" onClick={addNewCell}>
+              <span className="add-icon">+</span>
+              Add Cell
+            </button>
+            <button className="agent-action-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              Run All
+            </button>
+            <button className="agent-action-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+              </svg>
+              Save
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

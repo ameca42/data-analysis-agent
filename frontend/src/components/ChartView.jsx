@@ -40,7 +40,7 @@ const ChartView = ({ chartData, loading, error, onRetry }) => {
     return (
       <div className="chart-view-container">
         <div className="chart-empty">
-          <div className="empty-icon">📊</div>
+          <div className="empty-icon">Chart</div>
           <p>请配置图表参数以生成可视化图表</p>
         </div>
       </div>
@@ -124,7 +124,7 @@ const ChartView = ({ chartData, loading, error, onRetry }) => {
 
       {chartData.summary && (
         <div className="chart-summary">
-          <h4>📈 图表摘要</h4>
+          <h4>图表摘要</h4>
           <div className="summary-grid">
             {Object.entries(chartData.summary).map(([key, value]) => (
               <div key={key} className="summary-item">

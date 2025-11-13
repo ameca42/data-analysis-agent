@@ -13,7 +13,7 @@ const ThreeColumnLayout = ({
         <div className="panel-content">
           {leftPanel || (
             <div className="empty-state">
-              <div className="empty-state-icon">💬</div>
+              <div className="empty-state-icon">Chat</div>
               <p className="empty-state-title">AI 对话界面</p>
               <p className="empty-state-description">
                 与 AI 助手进行数据分析对话
@@ -28,7 +28,7 @@ const ThreeColumnLayout = ({
         <div className="panel-content">
           {middlePanel || (
             <div className="empty-state">
-              <div className="empty-state-icon">📝</div>
+              <div className="empty-state-icon">Code</div>
               <p className="empty-state-title">Jupyter 风格代码编辑器</p>
               <p className="empty-state-description">
                 编写和执行数据分析代码
@@ -43,7 +43,7 @@ const ThreeColumnLayout = ({
         <div className="panel-content">
           {rightPanel || (
             <div className="empty-state">
-              <div className="empty-state-icon">📊</div>
+              <div className="empty-state-icon">Data</div>
               <p className="empty-state-title">数据管理</p>
               <p className="empty-state-description">
                 管理数据集和查看可视化结果

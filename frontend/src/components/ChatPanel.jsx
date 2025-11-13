@@ -36,7 +36,7 @@ const ChatPanel = () => {
       <div className="chat-messages">
         {messages.length === 0 ? (
           <div className="chat-empty">
-            <div className="chat-empty-icon">🤖</div>
+            <div className="chat-empty-icon">AI</div>
             <p className="chat-empty-title">开始对话</p>
             <p className="chat-empty-description">
               向 AI 助手询问关于数据分析的问题

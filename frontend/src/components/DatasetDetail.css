@@ -24,7 +24,7 @@
 
 .modal-content {
   background: white;
-  border-radius: 16px;
+  border-radius: var(--radius-2xl);
   max-width: 1400px;
   width: 95%;
   max-height: 95vh;
@@ -72,7 +72,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: var(--radius-2xl);
   transition: all 0.2s;
 }
 
@@ -179,7 +179,7 @@
 .status-badge {
   display: inline-block;
   padding: 4px 12px;
-  border-radius: 12px;
+  border-radius: var(--radius-2xl);
   font-size: 13px;
   font-weight: 600;
 }
@@ -198,7 +198,7 @@
   margin-top: 16px;
   padding: 16px;
   background: #f7fafc;
-  border-radius: 8px;
+  border-radius: var(--radius-2xl);
   border-left: 4px solid #667eea;
 }
 
@@ -225,7 +225,7 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: var(--radius-2xl);
   display: flex;
   align-items: center;
   gap: 16px;
@@ -294,7 +294,7 @@
   padding: 4px 10px;
   background: #edf2f7;
   color: #4a5568;
-  border-radius: 6px;
+  border-radius: var(--radius-2xl);
   font-size: 12px;
   font-weight: 600;
 }
@@ -329,7 +329,7 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-2xl);
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;

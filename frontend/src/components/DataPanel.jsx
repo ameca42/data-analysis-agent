@@ -70,7 +70,7 @@ const DataPanel = () => {
                 color: 'var(--systemSecondary)',
                 fontSize: 'var(--font-size-sm)'
               }}>
-                <p style={{ margin: 0 }}>💡 提示：上传的数据集可以在左侧对话框中进行查询和分析</p>
+                <p style={{ margin: 0 }}>提示：上传的数据集可以在左侧对话框中进行查询和分析</p>
               </div>
             </div>
           </div>
