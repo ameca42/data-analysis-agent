@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ChartManager from './ChartManager';
 import './DatasetDetail.css';
 
 const DatasetDetail = ({ dataset, onClose }) => {
+  const [activeTab, setActiveTab] = useState('details'); // 'details' | 'charts'
+
   if (!dataset) return null;
 
   // 格式化文件大小
@@ -30,10 +33,20 @@ const DatasetDetail = ({ dataset, onClose }) => {
   const getTypeName = (dtype) => {
     const typeMap = {
       'int64': '整数',
+      'BIGINT': '整数',
       'float64': '浮点数',
+      'DOUBLE': '浮点数',
+      'FLOAT': '浮点数',
       'object': '文本',
+      'VARCHAR': '文本',
+      'TEXT': '文本',
+      'CHAR': '文本',
       'bool': '布尔值',
-      'datetime64': '日期时间'
+      'BOOLEAN': '布尔值',
+      'datetime64': '日期时间',
+      'DATE': '日期',
+      'TIME': '时间',
+      'TIMESTAMP': '时间戳'
     };
     return typeMap[dtype] || dtype;
   };
@@ -48,119 +61,145 @@ const DatasetDetail = ({ dataset, onClose }) => {
           </button>
         </div>
 
+        {/* 标签页 */}
+        <div className="detail-tabs">
+          <button
+            className={`detail-tab ${activeTab === 'details' ? 'active' : ''}`}
+            onClick={() => setActiveTab('details')}
+          >
+            数据详情
+          </button>
+          <button
+            className={`detail-tab ${activeTab === 'charts' ? 'active' : ''}`}
+            onClick={() => setActiveTab('charts')}
+          >
+            图表分析
+          </button>
+        </div>
+
         <div className="modal-body">
-          {/* 基本信息 */}
-          <section className="detail-section">
-            <h3>基本信息</h3>
-            <div className="info-grid">
-              <div className="info-item">
-                <span className="info-label">数据集名称</span>
-                <span className="info-value">{dataset.name}</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">数据集 ID</span>
-                <span className="info-value">{dataset.id}</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">原始文件名</span>
-                <span className="info-value">{dataset.original_filename}</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">文件类型</span>
-                <span className="info-value">{dataset.file_type}</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">文件大小</span>
-                <span className="info-value">{formatFileSize(dataset.file_size)}</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">状态</span>
-                <span className={`status-badge ${dataset.status}`}>
-                  {dataset.status === 'active' ? '活跃' : '已删除'}
-                </span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">创建时间</span>
-                <span className="info-value">{formatDate(dataset.created_at)}</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">文件路径</span>
-                <span className="info-value path">{dataset.file_path}</span>
-              </div>
-            </div>
-
-            {dataset.description && (
-              <div className="description-box">
-                <strong>描述：</strong>
-                <p>{dataset.description}</p>
-              </div>
-            )}
-          </section>
-
-          {/* 数据统计 */}
-          <section className="detail-section">
-            <h3>数据统计</h3>
-            <div className="stats-cards">
-              <div className="stats-card">
-                <div className="stats-icon">📏</div>
-                <div className="stats-info">
-                  <div className="stats-value">{dataset.row_count.toLocaleString()}</div>
-                  <div className="stats-label">总行数</div>
+          {activeTab === 'details' && (
+            <div className="details-content">
+              {/* 基本信息 */}
+              <section className="detail-section">
+                <h3>基本信息</h3>
+                <div className="info-grid">
+                  <div className="info-item">
+                    <span className="info-label">数据集名称</span>
+                    <span className="info-value">{dataset.name}</span>
+                  </div>
+                  <div className="info-item">
+                    <span className="info-label">数据集 ID</span>
+                    <span className="info-value">{dataset.id}</span>
+                  </div>
+                  <div className="info-item">
+                    <span className="info-label">原始文件名</span>
+                    <span className="info-value">{dataset.original_filename}</span>
+                  </div>
+                  <div className="info-item">
+                    <span className="info-label">文件类型</span>
+                    <span className="info-value">{dataset.file_type}</span>
+                  </div>
+                  <div className="info-item">
+                    <span className="info-label">文件大小</span>
+                    <span className="info-value">{formatFileSize(dataset.file_size)}</span>
+                  </div>
+                  <div className="info-item">
+                    <span className="info-label">状态</span>
+                    <span className={`status-badge ${dataset.status}`}>
+                      {dataset.status === 'active' ? '活跃' : '已删除'}
+                    </span>
+                  </div>
+                  <div className="info-item">
+                    <span className="info-label">创建时间</span>
+                    <span className="info-value">{formatDate(dataset.created_at)}</span>
+                  </div>
+                  <div className="info-item">
+                    <span className="info-label">文件路径</span>
+                    <span className="info-value path">{dataset.file_path}</span>
+                  </div>
                 </div>
-              </div>
-              <div className="stats-card">
-                <div className="stats-icon">📋</div>
-                <div className="stats-info">
-                  <div className="stats-value">{dataset.schema_json?.length || 0}</div>
-                  <div className="stats-label">总列数</div>
-                </div>
-              </div>
-            </div>
-          </section>
 
-          {/* Schema 信息 */}
-          {dataset.schema_json && dataset.schema_json.length > 0 && (
-            <section className="detail-section">
-              <h3>列信息（Schema）</h3>
-              <div className="schema-table-wrapper">
-                <table className="schema-table">
-                  <thead>
-                    <tr>
-                      <th>列名</th>
-                      <th>数据类型</th>
-                      <th>非空</th>
-                      <th>空值</th>
-                      <th>唯一值</th>
-                      <th>统计信息</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {dataset.schema_json.map((col, index) => (
-                      <tr key={index}>
-                        <td className="col-name">{col.name}</td>
-                        <td>
-                          <span className="type-badge">{getTypeName(col.dtype)}</span>
-                        </td>
-                        <td>{col.non_null_count.toLocaleString()}</td>
-                        <td className={col.null_count > 0 ? 'has-nulls' : ''}>
-                          {col.null_count.toLocaleString()}
-                        </td>
-                        <td>{col.unique_count.toLocaleString()}</td>
-                        <td>
-                          {col.min !== undefined && (
-                            <div className="stats-details">
-                              <span>最小: {col.min}</span>
-                              <span>最大: {col.max}</span>
-                              <span>平均: {col.mean?.toFixed(2)}</span>
-                            </div>
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </section>
+                {dataset.description && (
+                  <div className="description-box">
+                    <strong>描述：</strong>
+                    <p>{dataset.description}</p>
+                  </div>
+                )}
+              </section>
+
+              {/* 数据统计 */}
+              <section className="detail-section">
+                <h3>数据统计</h3>
+                <div className="stats-cards">
+                  <div className="stats-card">
+                    <div className="stats-icon">📏</div>
+                    <div className="stats-info">
+                      <div className="stats-value">{dataset.row_count.toLocaleString()}</div>
+                      <div className="stats-label">总行数</div>
+                    </div>
+                  </div>
+                  <div className="stats-card">
+                    <div className="stats-icon">📋</div>
+                    <div className="stats-info">
+                      <div className="stats-value">{dataset.schema_json?.length || 0}</div>
+                      <div className="stats-label">总列数</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Schema 信息 */}
+              {dataset.schema_json && dataset.schema_json.length > 0 && (
+                <section className="detail-section">
+                  <h3>列信息（Schema）</h3>
+                  <div className="schema-table-wrapper">
+                    <table className="schema-table">
+                      <thead>
+                        <tr>
+                          <th>列名</th>
+                          <th>数据类型</th>
+                          <th>非空</th>
+                          <th>空值</th>
+                          <th>唯一值</th>
+                          <th>统计信息</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {dataset.schema_json.map((col, index) => (
+                          <tr key={index}>
+                            <td className="col-name">{col.name}</td>
+                            <td>
+                              <span className="type-badge">{getTypeName(col.dtype)}</span>
+                            </td>
+                            <td>{col.non_null_count?.toLocaleString()}</td>
+                            <td className={col.null_count > 0 ? 'has-nulls' : ''}>
+                              {col.null_count?.toLocaleString()}
+                            </td>
+                            <td>{col.unique_count?.toLocaleString()}</td>
+                            <td>
+                              {col.min !== undefined && (
+                                <div className="stats-details">
+                                  <span>最小: {col.min?.toLocaleString()}</span>
+                                  <span>最大: {col.max?.toLocaleString()}</span>
+                                  <span>平均: {col.mean?.toFixed(2)}</span>
+                                </div>
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              )}
+            </div>
+          )}
+
+          {activeTab === 'charts' && (
+            <div className="charts-content">
+              <ChartManager dataset={dataset} />
+            </div>
           )}
         </div>
 

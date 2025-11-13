@@ -18,6 +18,15 @@
 .app-header-content {
   max-width: var(--max-width);
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.app-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
 }
 
 .app-header h1 {

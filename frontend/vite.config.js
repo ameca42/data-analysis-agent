@@ -9,6 +9,10 @@ export default defineConfig({
       '/upload': {
         target: 'http://localhost:8000',
         changeOrigin: true,
+      },
+      '/datasets': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
       }
     }
   }

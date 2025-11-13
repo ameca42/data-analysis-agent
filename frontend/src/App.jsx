@@ -15,8 +15,11 @@ function App() {
     <div className="app">
       <header className="app-header">
         <div className="app-header-content">
-          <h1>数据分析 Agent</h1>
-          <p className="app-subtitle">智能数据分析与可视化平台</p>
+          <img src="/logo.png" alt="Logo" className="app-logo" />
+          <div>
+            <h1>数据分析 Agent</h1>
+            <p className="app-subtitle">智能数据分析与可视化平台</p>
+          </div>
         </div>
       </header>
 

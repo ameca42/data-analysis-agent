@@ -174,11 +174,12 @@ def analyze_dataset(file_path: str) -> dict:
         schema = []
         for col_name, col_type, null_info, *_ in columns_info:
             # 获取该列的统计信息
+            # 使用双引号包裹列名以支持包含空格的列名
             stats_query = f"""
                 SELECT
-                    COUNT({col_name}) as non_null_count,
-                    COUNT(*) - COUNT({col_name}) as null_count,
-                    COUNT(DISTINCT {col_name}) as unique_count
+                    COUNT("{col_name}") as non_null_count,
+                    COUNT(*) - COUNT("{col_name}") as null_count,
+                    COUNT(DISTINCT "{col_name}") as unique_count
                 FROM data
             """
             non_null_count, null_count, unique_count = conn.execute(stats_query).fetchone()
@@ -197,13 +198,14 @@ def analyze_dataset(file_path: str) -> dict:
 
             if any(num_type in col_type.upper() for num_type in numeric_types):
                 try:
+                    # 使用双引号包裹列名以支持包含空格的列名
                     stats_query = f"""
                         SELECT
-                            MIN({col_name}) as min_val,
-                            MAX({col_name}) as max_val,
-                            AVG({col_name}) as mean_val
+                            MIN("{col_name}") as min_val,
+                            MAX("{col_name}") as max_val,
+                            AVG("{col_name}") as mean_val
                         FROM data
-                        WHERE {col_name} IS NOT NULL
+                        WHERE "{col_name}" IS NOT NULL
                     """
                     min_val, max_val, mean_val = conn.execute(stats_query).fetchone()
 
@@ -298,9 +300,13 @@ async def upload_file(
         # 如果出错，删除已上传的文件
         if os.path.exists(file_path):
             os.remove(file_path)
+        # 打印详细错误信息用于调试
+        import traceback
+        print(f"上传文件时出错: {type(e).__name__}: {str(e)}")
+        print(traceback.format_exc())
         raise HTTPException(
             status_code=500,
-            detail=f"处理文件时出错: {str(e)}"
+            detail=f"处理文件时出错: {type(e).__name__}: {str(e) or repr(e)}"
         )
 
 

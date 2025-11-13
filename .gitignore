@@ -73,6 +73,7 @@ logs/
 # ===== 开发文档 =====
 backend/docs/
 frontend/docs/
+docs/
 
 # ===== 临时文件 =====
 *.tmp
@@ -89,3 +90,4 @@ coverage/
 .DS_Store
 *.bak
 *.orig
+frontend/web

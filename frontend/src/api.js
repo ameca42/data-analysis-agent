@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8000';
+// 使用相对路径，通过 Vite 代理转发到后端
+const API_BASE_URL = '';
 
 /**
  * 上传文件到服务器
@@ -78,5 +79,69 @@ export const deleteDataset = async (datasetId) => {
     return response.data;
   } catch (error) {
     throw error.response?.data?.detail || '删除数据集失败';
+  }
+};
+
+/**
+ * 生成图表
+ * @param {number} datasetId - 数据集ID
+ * @param {Object} chartConfig - 图表配置
+ * @returns {Promise} 图表数据
+ */
+export const generateChart = async (datasetId, chartConfig) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}/datasets/${datasetId}/charts`, chartConfig);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data?.detail || '生成图表失败';
+  }
+};
+
+/**
+ * 获取数据集的图表列表
+ * @param {number} datasetId - 数据集ID
+ * @param {string} chartType - 图表类型（可选）
+ * @param {number} limit - 限制数量
+ * @returns {Promise} 图表列表
+ */
+export const getDatasetCharts = async (datasetId, chartType = null, limit = 20) => {
+  try {
+    const params = { limit };
+    if (chartType) params.chart_type = chartType;
+
+    const response = await axios.get(`${API_BASE_URL}/datasets/${datasetId}/charts`, { params });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data?.detail || '获取图表列表失败';
+  }
+};
+
+/**
+ * 获取单个图表数据
+ * @param {number} datasetId - 数据集ID
+ * @param {number} analysisId - 图表分析ID
+ * @returns {Promise} 图表数据
+ */
+export const getChart = async (datasetId, analysisId) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/datasets/${datasetId}/charts/${analysisId}`);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data?.detail || '获取图表数据失败';
+  }
+};
+
+/**
+ * 删除图表
+ * @param {number} datasetId - 数据集ID
+ * @param {number} analysisId - 图表分析ID
+ * @returns {Promise} 删除结果
+ */
+export const deleteChart = async (datasetId, analysisId) => {
+  try {
+    const response = await axios.delete(`${API_BASE_URL}/datasets/${datasetId}/charts/${analysisId}`);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data?.detail || '删除图表失败';
   }
 };
