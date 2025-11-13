@@ -1,0 +1,17 @@
+/* 新版 App 样式 */
+.app-new {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--pageBG);
+  color: var(--systemPrimary);
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  /* 保留空媒体查询以备将来使用 */
+}
+
+@media (max-width: 768px) {
+  /* 保留空媒体查询以备将来使用 */
+}

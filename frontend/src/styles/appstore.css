@@ -1,0 +1,289 @@
+/* App Store 风格的设计系统 */
+
+/* 颜色变量 - 支持深浅色主题 */
+:root {
+  /* 主要颜色 - 更柔和的色调 */
+  --systemBlue: #5ac8fa;
+  --systemBlue-vibrant: #4a90e2;
+  --systemGreen: #4cd964;
+  --systemRed: #ff6b6b;
+  --systemOrange: #ff9f43;
+  --systemYellow: #ffd93d;
+  --systemPurple: #9b59b6;
+  --systemPink: #ff9ff3;
+  --systemIndigo: #8e44ad;
+  --systemTeal: #74b9ff;
+  --systemMint: #81ecec;
+
+  /* 灰度颜色 */
+  --systemGray: #8e8e93;
+  --systemGray2: #aeaeb2;
+  --systemGray3: #c7c7cc;
+  --systemGray4: #d1d1d6;
+  --systemGray5: #e5e5ea;
+  --systemGray6: #f2f2f7;
+
+  /* 文本颜色 */
+  --systemPrimary: rgba(0, 0, 0, 0.85);
+  --systemSecondary: rgba(0, 0, 0, 0.5);
+  --systemTertiary: rgba(0, 0, 0, 0.25);
+  --systemQuaternary: rgba(0, 0, 0, 0.1);
+  --systemQuinary: rgba(0, 0, 0, 0.05);
+
+  /* 背景颜色 */
+  --pageBG: #ffffff;
+  --cardBG: #ffffff;
+  --headerBG: rgba(255, 255, 255, 0.72);
+  --sidebarBG: rgba(60, 60, 67, 0.03);
+  --footerBG: #f2f2f7;
+
+  /* 边框和分割线 */
+  --labelDivider: rgba(0, 0, 0, 0.15);
+  --strokeColor: rgba(0, 0, 0, 0.15);
+  --keylineBorder: 0.5px solid var(--labelDivider);
+
+  /* 阴影 */
+  --cardShadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
+  --modalShadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  --hoverShadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --focusRing: 0 0 0 4px rgba(0, 122, 255, 0.6);
+
+  /* 间距系统 */
+  --spacing-xs: 2px;
+  --spacing-sm: 4px;
+  --spacing-md: 8px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 32px;
+  --spacing-3xl: 48px;
+  --spacing-4xl: 64px;
+
+  /* 字体大小 */
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 32px;
+  --font-size-4xl: 48px;
+
+  /* 字体权重 */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 圆角 */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+  --radius-4xl: 32px;
+
+  /* 动画 */
+  --transition-fast: 0.1s ease-in;
+  --transition-normal: 0.2s ease-in;
+  --transition-slow: 0.3s ease-in;
+
+  /* 布局 */
+  --sidebar-width: 280px;
+  --header-height: 44px;
+  --body-gutter: 20px;
+  --max-width: 1200px;
+  --grid-gutter: 16px;
+}
+
+/* 深色主题 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --systemBlue: #0a84ff;
+    --systemGreen: #32d74b;
+    --systemRed: #ff453a;
+    --systemOrange: #ff9f0a;
+    --systemYellow: #ffd60a;
+    --systemPurple: #bf5af2;
+    --systemPink: #ff375f;
+    --systemIndigo: #5e5ce6;
+    --systemTeal: #6ac4dc;
+    --systemMint: #63e6e2;
+
+    --systemGray: #98989d;
+    --systemGray2: #636366;
+    --systemGray3: #48484a;
+    --systemGray4: #3a3a3c;
+    --systemGray5: #2c2c2e;
+    --systemGray6: #1c1c1e;
+
+    --systemPrimary: hsla(0, 0%, 100%, 0.85);
+    --systemSecondary: hsla(0, 0%, 100%, 0.55);
+    --systemTertiary: hsla(0, 0%, 100%, 0.25);
+    --systemQuaternary: hsla(0, 0%, 100%, 0.1);
+    --systemQuinary: hsla(0, 0%, 100%, 0.05);
+
+    --pageBG: #000000;
+    --cardBG: #1c1c1e;
+    --headerBG: rgba(28, 28, 30, 0.72);
+    --sidebarBG: rgba(60, 60, 67, 0.03);
+    --footerBG: #2c2c2e;
+
+    --labelDivider: hsla(0, 0%, 100%, 0.1);
+    --strokeColor: hsla(0, 0%, 100%, 0.15);
+    --keylineBorder: 0.5px solid var(--labelDivider);
+
+    --cardShadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+    --modalShadow: 0 10px 25px rgba(0, 0, 0, 0.55);
+    --hoverShadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --focusRing: 0 0 0 4px rgba(10, 132, 255, 0.6);
+  }
+}
+
+/* 全局重置 */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+  font-weight: var(--font-weight-normal);
+  color: var(--systemPrimary);
+  background-color: var(--pageBG);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'kern' 1;
+}
+
+/* 通用组件样式 */
+.card {
+  background-color: var(--cardBG);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--cardShadow);
+  border: var(--keylineBorder);
+  overflow: hidden;
+  transition: var(--transition-normal);
+}
+
+.card:hover {
+  box-shadow: var(--hoverShadow);
+  transform: translateY(-1px);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  background: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.btn-primary {
+  background-color: var(--systemBlue);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--systemBlue-vibrant);
+}
+
+.btn-secondary {
+  background-color: var(--systemQuaternary);
+  color: var(--systemPrimary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--systemTertiary);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--systemSecondary);
+}
+
+.btn-ghost:hover {
+  background-color: var(--systemQuaternary);
+  color: var(--systemPrimary);
+}
+
+/* 焦点样式 */
+.btn:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: var(--focusRing);
+  outline-offset: 2px;
+}
+
+/* 文本样式 */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+}
+
+h1 { font-size: var(--font-size-3xl); }
+h2 { font-size: var(--font-size-2xl); }
+h3 { font-size: var(--font-size-xl); }
+h4 { font-size: var(--font-size-lg); }
+h5 { font-size: var(--font-size-base); }
+h6 { font-size: var(--font-size-sm); }
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--systemGray3);
+  border-radius: var(--radius-lg);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--systemGray2);
+  background-clip: content-box;
+}
+
+/* 响应式断点 */
+@media (max-width: 768px) {
+  :root {
+    --body-gutter: 16px;
+    --grid-gutter: 12px;
+    --sidebar-width: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --body-gutter: 12px;
+    --grid-gutter: 8px;
+    --sidebar-width: 100%;
+  }
+}

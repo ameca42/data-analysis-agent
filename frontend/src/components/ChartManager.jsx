@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ChartConfig from './ChartConfig';
 import ChartView from './ChartView';
-import { generateChart, getDatasetCharts, deleteChart } from '../api';
+import { generateChart, getDatasetCharts, deleteChart, getChart } from '../api';
 import './ChartManager.css';
 
 const ChartManager = ({ dataset }) => {
@@ -220,19 +220,22 @@ const ChartManager = ({ dataset }) => {
                       </div>
                       {chart.summary && Object.keys(chart.summary).length > 0 && (
                         <div className="chart-summary-mini">
-                          {Object.entries(chart.summary).slice(0, 2).map(([key, value]) => (
-                            <div key={key} className="summary-item">
-                              <span className="summary-label">
-                                {key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}:
-                              </span>
-                              <span className="summary-value">
-                                {typeof value === 'number' ?
-                                  value.toLocaleString(undefined, { maximumFractionDigits: 1 }) :
-                                  value
-                                }
-                              </span>
-                            </div>
-                          ))}
+                          {Object.entries(chart.summary)
+                            .filter(([key, value]) => typeof value !== 'object') // 过滤掉对象和数组
+                            .slice(0, 2)
+                            .map(([key, value]) => (
+                              <div key={key} className="summary-item">
+                                <span className="summary-label">
+                                  {key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}:
+                                </span>
+                                <span className="summary-value">
+                                  {typeof value === 'number' ?
+                                    value.toLocaleString(undefined, { maximumFractionDigits: 1 }) :
+                                    String(value)
+                                  }
+                                </span>
+                              </div>
+                            ))}
                         </div>
                       )}
                     </div>
