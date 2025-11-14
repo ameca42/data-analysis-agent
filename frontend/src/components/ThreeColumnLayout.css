@@ -1,18 +1,18 @@
-/* 三列布局样式 */
+/* 三列布局样式 - 现代化设计 */
 .three-column-layout {
   display: grid;
   grid-template-columns: 1fr 1.2fr 1fr;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-lg);
   height: 100vh;
-  padding: var(--spacing-xl);
-  background-color: var(--pageBG);
+  padding: var(--spacing-lg);
+  background: transparent;
 }
 
 .column {
   display: flex;
   flex-direction: column;
   background-color: var(--cardBG);
-  border-radius: var(--radius-2xl);
+  border-radius: var(--radius-lg);
   border: var(--keylineBorder);
   overflow: hidden;
   box-shadow: var(--cardShadow);
@@ -21,6 +21,7 @@
 
 .column:hover {
   box-shadow: var(--hoverShadow);
+  transform: translateY(-2px);
 }
 
 /* 面板内容 */
@@ -79,29 +80,8 @@
   max-width: 280px;
 }
 
-/* 面板特有样式 - 移除蓝色背景 */
-.left-panel {
-  /* 移除蓝色边框和背景 */
-}
-
-.left-panel .panel-title {
-  color: var(--systemPrimary);
-}
-
-/* 中间面板特有样式 */
-.middle-panel {
-  /* 移除蓝色边框和背景 */
-}
-
-.middle-panel .panel-title {
-  color: var(--systemPrimary);
-}
-
-/* 右侧面板特有样式 */
-.right-panel {
-  /* 移除蓝色边框和背景 */
-}
-
+.left-panel .panel-title,
+.middle-panel .panel-title,
 .right-panel .panel-title {
   color: var(--systemPrimary);
 }
@@ -227,16 +207,27 @@
 }
 
 .chat-empty-icon {
-  font-size: 56px;
+  width: 56px;
+  height: 56px;
   margin-bottom: var(--spacing-xl);
   opacity: 0.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-empty-icon svg {
+  width: 100%;
+  height: 100%;
+  color: var(--systemSecondary);
 }
 
 .chat-empty-title {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
-  color: var(--systemPrimary);
+  color: var(--systemSecondary);
   margin: 0 0 var(--spacing-md) 0;
+  opacity: 0.6;
 }
 
 .chat-empty-description {
@@ -244,6 +235,7 @@
   color: var(--systemSecondary);
   margin: 0;
   line-height: 1.5;
+  opacity: 0.5;
 }
 
 .chat-message {
@@ -269,8 +261,10 @@
 }
 
 .chat-message.user .message-content {
-  background-color: rgba(59, 130, 246, 0.9);
+  background-color: var(--systemBlue);
   color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 1px 2px rgba(59, 130, 246, 0.3);
 }
 
 .message-time {
@@ -284,9 +278,9 @@
 }
 
 .chat-input-container {
-  padding: var(--spacing-lg) var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-xl);
   border-top: var(--keylineBorder);
-  min-height: 72px;
+  min-height: 56px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -323,10 +317,10 @@
 
 .chat-send-btn {
   padding: var(--spacing-sm) var(--spacing-lg);
-  background-color: #3b82f6;
+  background-color: var(--systemBlue);
   color: white;
   border: none;
-  border-radius: var(--radius-2xl);
+  border-radius: var(--radius-lg);
   cursor: pointer;
   transition: var(--transition-fast);
   display: flex;
@@ -335,10 +329,11 @@
   font-weight: var(--font-weight-medium);
   height: 40px;
   flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(59, 130, 246, 0.3);
 }
 
 .chat-send-btn:hover:not(:disabled) {
-  background-color: #2563eb;
+  background-color: var(--systemBlue-hover);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
@@ -348,6 +343,8 @@
   color: var(--systemGray2);
   cursor: not-allowed;
   opacity: 0.6;
+  transform: none;
+  box-shadow: none;
 }
 
 /* 代码编辑器样式 */
@@ -362,12 +359,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-lg) var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-xl);
   border-bottom: var(--keylineBorder);
   background-color: var(--headerBG);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
-  min-height: 72px;
+  min-height: 56px;
   flex-shrink: 0;
 }
 
@@ -391,28 +388,27 @@
   gap: var(--spacing-sm);
   padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: var(--radius-2xl);
-  background-color: var(--systemQuaternary);
-  color: var(--systemSecondary);
+  background-color: var(--systemGray5);
+  color: var(--systemGray);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
   transition: var(--transition-fast);
-  border: 2px solid transparent;
+  border: none;
   white-space: nowrap;
   flex-shrink: 0;
 }
 
 .agent-tab:hover {
-  background-color: var(--systemTertiary);
-  color: var(--systemPrimary);
+  background-color: var(--systemGray4);
+  color: var(--systemGray2);
   transform: translateY(-1px);
 }
 
 .agent-tab.active {
-  background-color: var(--cardBG);
-  color: var(--systemPrimary);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-color: currentColor;
+  background-color: rgba(59, 130, 246, 0.15);
+  color: var(--systemBlue);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
 }
 
 .agent-tab-icon {
@@ -472,14 +468,14 @@
 /* 编辑器底部所有按钮统一样式，均匀分布 - 蓝色主题 */
 .editor-footer .agent-action-btn,
 .editor-footer .add-cell-btn {
-  background-color: #3b82f6;
+  background-color: var(--systemBlue);
   color: white;
   border: none;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
   transition: var(--transition-fast);
-  border-radius: var(--radius-2xl);
+  border-radius: var(--radius-lg);
   padding: var(--spacing-sm) var(--spacing-lg);
   display: flex;
   align-items: center;
@@ -487,11 +483,12 @@
   gap: var(--spacing-sm);
   flex: 1;
   min-height: 40px;
+  box-shadow: 0 1px 2px rgba(59, 130, 246, 0.3);
 }
 
 .editor-footer .agent-action-btn:hover,
 .editor-footer .add-cell-btn:hover {
-  background-color: #2563eb;
+  background-color: var(--systemBlue-hover);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
@@ -523,21 +520,42 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-lg) var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-xl);
   border-bottom: var(--keylineBorder);
   background-color: var(--headerBG);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   flex-shrink: 0;
-  min-height: 72px;
+  min-height: 56px;
+  gap: var(--spacing-md);
 }
 
-.data-title {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
+.chart-tabs-header {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.chart-tabs-header .tab-button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--systemQuaternary);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--systemSecondary);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.chart-tabs-header .tab-button:hover {
+  background-color: var(--systemTertiary);
   color: var(--systemPrimary);
-  margin: 0;
-  letter-spacing: -0.005em;
+}
+
+.chart-tabs-header .tab-button.active {
+  background-color: var(--systemBlue);
+  color: white;
+  box-shadow: 0 1px 2px rgba(59, 130, 246, 0.3);
 }
 
 .dataset-toggle-btn {
@@ -545,18 +563,19 @@
   align-items: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-sm) var(--spacing-lg);
-  background-color: #3b82f6;
+  background-color: var(--systemBlue);
   border: none;
-  border-radius: var(--radius-2xl);
+  border-radius: var(--radius-lg);
   color: white;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
   transition: var(--transition-fast);
+  box-shadow: 0 1px 2px rgba(59, 130, 246, 0.3);
 }
 
 .dataset-toggle-btn:hover {
-  background-color: #2563eb;
+  background-color: var(--systemBlue-hover);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
@@ -571,7 +590,7 @@
 .charts-view {
   flex: 1;
   overflow-y: auto;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-md);
 }
 
 /* 数据集管理模态框 */
@@ -719,7 +738,7 @@
   background-clip: content-box;
 }
 
-/* 空笔记本状态 */
+/* 空笔记本状态 - 现代化设计 */
 .empty-notebook {
   display: flex;
   flex-direction: column;
@@ -731,29 +750,31 @@
 }
 
 .empty-notebook-icon {
-  font-size: 64px;
+  font-size: 56px;
   margin-bottom: var(--spacing-xl);
-  opacity: 0.5;
+  opacity: 0.4;
+  color: var(--systemSecondary);
 }
 
 .empty-notebook h3 {
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
   color: var(--systemPrimary);
   margin: 0 0 var(--spacing-md) 0;
 }
 
 .empty-notebook p {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   color: var(--systemSecondary);
   margin: 0;
   line-height: 1.5;
+  max-width: 300px;
 }
 
 .notebook-cell {
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
   border: 1px solid var(--strokeColor);
-  border-radius: var(--radius-2xl);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   background-color: var(--cardBG);
   box-shadow: var(--cardShadow);
@@ -784,6 +805,7 @@
 .cell-actions {
   display: flex;
   gap: var(--spacing-sm);
+  align-items: center;
 }
 
 .cell-btn {
@@ -791,15 +813,16 @@
   border: none;
   cursor: pointer;
   font-size: var(--font-size-sm);
-  padding: var(--spacing-sm);
-  border-radius: var(--radius-2xl);
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-lg);
   transition: var(--transition-fast);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   color: var(--systemSecondary);
   width: 32px;
   height: 32px;
+  box-sizing: border-box;
 }
 
 .cell-btn:hover {
@@ -814,8 +837,15 @@
 }
 
 .cell-btn.delete-btn:hover {
-  background-color: var(--systemRed);
+  background-color: var(--systemBlue);
   color: white;
+}
+
+.cell-btn.delete-btn svg {
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  flex-shrink: 0;
 }
 
 .cell-input {
@@ -906,7 +936,7 @@
   width: 100%;
   padding: var(--spacing-md) var(--spacing-lg);
   border: 2px dashed var(--strokeColor);
-  border-radius: var(--radius-2xl);
+  border-radius: var(--radius-lg);
   background: none;
   color: var(--systemSecondary);
   cursor: pointer;
@@ -936,18 +966,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-lg) var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-xl);
   border-top: var(--keylineBorder);
   background-color: var(--headerBG);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   flex-shrink: 0;
-  min-height: 72px;
+  min-height: 56px;
 }
 
 .editor-global-actions {
   display: flex;
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm);
   width: 100%;
 }
 

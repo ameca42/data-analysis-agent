@@ -35,8 +35,15 @@ const ChatPanel = () => {
       {/* 消息列表 */}
       <div className="chat-messages">
         {messages.length === 0 ? (
-          <div className="chat-empty">
-            <div className="chat-empty-icon">🤖</div>
+        <div className="chat-empty">
+          <div className="chat-empty-icon">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <rect x="4" y="7" width="16" height="12" rx="2" ry="2"></rect>
+              <path d="M9 7v-3h6v3"></path>
+              <circle cx="9" cy="14" r="1" fill="currentColor" stroke="none"></circle>
+              <circle cx="15" cy="14" r="1" fill="currentColor" stroke="none"></circle>
+            </svg>
+          </div>
             <p className="chat-empty-title">开始对话</p>
             <p className="chat-empty-description">
               向 AI 助手询问关于数据分析的问题

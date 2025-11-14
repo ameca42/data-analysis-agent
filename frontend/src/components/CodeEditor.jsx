@@ -6,25 +6,25 @@ const CodeEditor = () => {
   const [agents, setAgents] = useState([
     {
       id: 'python',
-      name: 'Python Agent',
+      name: 'Python',
       color: '#3776ab',
       description: 'Python 数据分析专家'
     },
     {
       id: 'sql',
-      name: 'SQL Agent',
+      name: 'SQL',
       color: '#00758f',
       description: 'SQL 数据库查询专家'
     },
     {
       id: 'visualization',
-      name: 'Visualization Agent',
+      name: 'Visualization',
       color: '#ff6f61',
       description: '数据可视化专家'
     },
     {
       id: 'ml',
-      name: 'ML Agent',
+      name: 'ML',
       color: '#7b68ee',
       description: '机器学习专家'
     }
@@ -99,11 +99,7 @@ const CodeEditor = () => {
               key={agent.id}
               className={`agent-tab ${activeAgent === agent.id ? 'active' : ''}`}
               onClick={() => setActiveAgent(agent.id)}
-              style={{
-                borderColor: activeAgent === agent.id ? agent.color : 'transparent'
-              }}
             >
-              <span className="agent-tab-icon">{agent.icon}</span>
               <span className="agent-tab-name">{agent.name}</span>
             </button>
           ))}
@@ -142,8 +138,9 @@ const CodeEditor = () => {
                     onClick={() => deleteCell(cell.id)}
                   >
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polyline points="3,6 5,6 21,6"></polyline>
-                      <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2v2"></path>
+                      <path d="M3 6h18"/>
+                      <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/>
                     </svg>
                   </button>
                 </div>

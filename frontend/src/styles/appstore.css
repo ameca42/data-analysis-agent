@@ -1,72 +1,73 @@
-/* App Store 风格的设计系统 */
+/* 现代数据分析系统 - 基于参考设计风格 */
 
-/* 颜色变量 - 支持深浅色主题 */
+/* 颜色变量 - 现代蓝色主题 */
 :root {
-  /* 主要颜色 - 更柔和的色调 */
-  --systemBlue: #5ac8fa;
-  --systemBlue-vibrant: #4a90e2;
-  --systemGreen: #4cd964;
-  --systemRed: #ff6b6b;
-  --systemOrange: #ff9f43;
-  --systemYellow: #ffd93d;
-  --systemPurple: #9b59b6;
-  --systemPink: #ff9ff3;
-  --systemIndigo: #8e44ad;
-  --systemTeal: #74b9ff;
-  --systemMint: #81ecec;
+  /* 主要颜色 - 现代蓝色系 */
+  --systemBlue: #3b82f6;
+  --systemBlue-hover: #2563eb;
+  --systemBlue-light: #dbeafe;
+  --systemGreen: #10b981;
+  --systemRed: #ef4444;
+  --systemOrange: #f59e0b;
+  --systemYellow: #eab308;
+  --systemPurple: #8b5cf6;
+  --systemPink: #ec4899;
+  --systemIndigo: #6366f1;
+  --systemTeal: #14b8a6;
+  --systemMint: #06b6d4;
 
-  /* 灰度颜色 */
-  --systemGray: #8e8e93;
-  --systemGray2: #aeaeb2;
-  --systemGray3: #c7c7cc;
-  --systemGray4: #d1d1d6;
-  --systemGray5: #e5e5ea;
-  --systemGray6: #f2f2f7;
+  /* 灰度颜色 - 更柔和的色调 */
+  --systemGray: #6b7280;
+  --systemGray2: #9ca3af;
+  --systemGray3: #d1d5db;
+  --systemGray4: #e5e7eb;
+  --systemGray5: #f3f4f6;
+  --systemGray6: #f9fafb;
 
-  /* 文本颜色 */
-  --systemPrimary: rgba(0, 0, 0, 0.85);
-  --systemSecondary: rgba(0, 0, 0, 0.5);
-  --systemTertiary: rgba(0, 0, 0, 0.25);
-  --systemQuaternary: rgba(0, 0, 0, 0.1);
-  --systemQuinary: rgba(0, 0, 0, 0.05);
+  /* 文本颜色 - 基于 slate 色系 */
+  --systemPrimary: #1e293b;
+  --systemSecondary: #64748b;
+  --systemTertiary: #94a3b8;
+  --systemQuaternary: #e2e8f0;
+  --systemQuinary: #f8fafc;
 
-  /* 背景颜色 */
-  --pageBG: #ffffff;
+  /* 背景颜色 - 渐变和现代感 */
+  --pageBG: linear-gradient(to bottom right, #f8fafc, #f1f5f9);
   --cardBG: #ffffff;
-  --headerBG: rgba(255, 255, 255, 0.72);
-  --sidebarBG: rgba(60, 60, 67, 0.03);
-  --footerBG: #f2f2f7;
+  --headerBG: rgba(255, 255, 255, 0.95);
+  --sidebarBG: #f8fafc;
+  --footerBG: #f8fafc;
 
-  /* 边框和分割线 */
-  --labelDivider: rgba(0, 0, 0, 0.15);
-  --strokeColor: rgba(0, 0, 0, 0.15);
-  --keylineBorder: 0.5px solid var(--labelDivider);
+  /* 边框和分割线 - 基于 slate 色系 */
+  --labelDivider: #e2e8f0;
+  --strokeColor: #e2e8f0;
+  --keylineBorder: 1px solid var(--labelDivider);
 
-  /* 阴影 */
-  --cardShadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
-  --modalShadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-  --hoverShadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --focusRing: 0 0 0 4px rgba(0, 122, 255, 0.6);
+  /* 阴影 - 更柔和现代 */
+  --cardShadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --modalShadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --hoverShadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --focusRing: 0 0 0 3px rgba(59, 130, 246, 0.5);
 
-  /* 间距系统 */
-  --spacing-xs: 2px;
-  --spacing-sm: 4px;
-  --spacing-md: 8px;
+  /* 间距系统 - 基于 tailwind 规范 */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
   --spacing-lg: 16px;
   --spacing-xl: 24px;
   --spacing-2xl: 32px;
   --spacing-3xl: 48px;
   --spacing-4xl: 64px;
 
-  /* 字体大小 */
-  --font-size-xs: 11px;
-  --font-size-sm: 12px;
-  --font-size-base: 14px;
-  --font-size-lg: 16px;
-  --font-size-xl: 18px;
+  /* 字体大小 - 基于 tailwind 规范 */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
   --font-size-2xl: 24px;
-  --font-size-3xl: 32px;
-  --font-size-4xl: 48px;
+  --font-size-3xl: 30px;
+  --font-size-4xl: 36px;
 
   /* 字体权重 */
   --font-weight-light: 300;
@@ -75,7 +76,7 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  /* 圆角 */
+  /* 圆角 - 更现代的弧度 */
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 8px;
@@ -83,11 +84,12 @@
   --radius-2xl: 16px;
   --radius-3xl: 24px;
   --radius-4xl: 32px;
+  --radius-full: 9999px;
 
-  /* 动画 */
-  --transition-fast: 0.1s ease-in;
-  --transition-normal: 0.2s ease-in;
-  --transition-slow: 0.3s ease-in;
+  /* 动画 - 更流畅的过渡 */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
 
   /* 布局 */
   --sidebar-width: 280px;
@@ -148,7 +150,7 @@
 
 html {
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.6;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   color-scheme: light dark;
@@ -157,19 +159,19 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Inter', system-ui, sans-serif;
   font-weight: var(--font-weight-normal);
   color: var(--systemPrimary);
-  background-color: var(--pageBG);
+  background: var(--pageBG);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'kern' 1;
 }
 
-/* 通用组件样式 */
+/* 通用组件样式 - 现代化设计 */
 .card {
   background-color: var(--cardBG);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   box-shadow: var(--cardShadow);
   border: var(--keylineBorder);
   overflow: hidden;
@@ -178,17 +180,18 @@ body {
 
 .card:hover {
   box-shadow: var(--hoverShadow);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--spacing-sm);
   padding: var(--spacing-md) var(--spacing-lg);
   border: none;
   border-radius: var(--radius-lg);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   text-decoration: none;
   cursor: pointer;
@@ -196,24 +199,41 @@ body {
   background: none;
   user-select: none;
   -webkit-user-select: none;
+  white-space: nowrap;
 }
 
 .btn-primary {
   background-color: var(--systemBlue);
   color: white;
+  box-shadow: 0 1px 2px rgba(59, 130, 246, 0.3);
 }
 
 .btn-primary:hover {
-  background-color: var(--systemBlue-vibrant);
+  background-color: var(--systemBlue-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-primary:disabled {
+  background-color: var(--systemGray4);
+  color: var(--systemGray2);
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
 }
 
 .btn-secondary {
   background-color: var(--systemQuaternary);
   color: var(--systemPrimary);
+  border: 1px solid var(--strokeColor);
 }
 
 .btn-secondary:hover {
-  background-color: var(--systemTertiary);
+  background-color: var(--systemQuinary);
+  color: var(--systemPrimary);
+  transform: translateY(-1px);
+  box-shadow: var(--cardShadow);
 }
 
 .btn-ghost {

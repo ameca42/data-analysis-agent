@@ -7,6 +7,7 @@ import './ThreeColumnLayout.css';
 const DataPanel = () => {
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [showDatasetModal, setShowDatasetModal] = useState(false);
+  const [activeTab, setActiveTab] = useState('create'); // 'create' | 'gallery'
 
   const handleUploadSuccess = () => {
     setRefreshTrigger(prev => prev + 1);
@@ -14,9 +15,22 @@ const DataPanel = () => {
 
   return (
     <div className="data-panel">
-      {/* 标题栏，包含数据集按钮 */}
+      {/* 标题栏，包含图表标签页和数据集按钮 */}
       <div className="data-header">
-        <h3 className="data-title">数据可视化</h3>
+        <div className="chart-tabs-header">
+          <button
+            className={`tab-button ${activeTab === 'create' ? 'active' : ''}`}
+            onClick={() => setActiveTab('create')}
+          >
+            创建图表
+          </button>
+          <button
+            className={`tab-button ${activeTab === 'gallery' ? 'active' : ''}`}
+            onClick={() => setActiveTab('gallery')}
+          >
+            图表库
+          </button>
+        </div>
         <button
           className="dataset-toggle-btn"
           onClick={() => setShowDatasetModal(true)}
@@ -32,7 +46,7 @@ const DataPanel = () => {
       {/* 内容区域 - 只显示可视化 */}
       <div className="data-content">
         <div className="charts-view">
-          <ChartManager />
+          <ChartManager activeTab={activeTab} onTabChange={setActiveTab} />
         </div>
       </div>
 

@@ -1,9 +1,9 @@
-/* 新版 App 样式 */
+/* 新版 App 样式 - 基于参考文件的现代设计 */
 .app-new {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--pageBG);
+  background: linear-gradient(to bottom right, #f8fafc, #f1f5f9);
   color: var(--systemPrimary);
 }
 

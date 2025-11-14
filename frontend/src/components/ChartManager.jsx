@@ -4,13 +4,17 @@ import ChartView from './ChartView';
 import { generateChart, getDatasetCharts, deleteChart, getChart } from '../api';
 import './ChartManager.css';
 
-const ChartManager = ({ dataset }) => {
+const ChartManager = ({ dataset, activeTab = 'create', onTabChange }) => {
   const [chartData, setChartData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [savedCharts, setSavedCharts] = useState([]);
   const [loadingCharts, setLoadingCharts] = useState(false);
-  const [activeTab, setActiveTab] = useState('create'); // 'create' | 'gallery'
+
+  // 内部状态（如果没有传入onTabChange）
+  const [localActiveTab, setLocalActiveTab] = useState(activeTab);
+  const currentTab = onTabChange ? activeTab : localActiveTab;
+  const setCurrentTab = onTabChange || setLocalActiveTab;
 
   // 加载已保存的图表
   const loadSavedCharts = async () => {
@@ -28,10 +32,10 @@ const ChartManager = ({ dataset }) => {
   };
 
   useEffect(() => {
-    if (activeTab === 'gallery') {
+    if (currentTab === 'gallery') {
       loadSavedCharts();
     }
-  }, [activeTab, dataset?.id]);
+  }, [currentTab, dataset?.id]);
 
   // 生成图表
   const handleGenerateChart = async (config) => {
@@ -44,7 +48,7 @@ const ChartManager = ({ dataset }) => {
       setChartData(result);
 
       // 生成成功后，刷新图表列表
-      if (activeTab === 'gallery') {
+      if (currentTab === 'gallery') {
         loadSavedCharts();
       }
     } catch (err) {
@@ -62,7 +66,7 @@ const ChartManager = ({ dataset }) => {
     try {
       const chart = await getChart(dataset.id, chartId);
       setChartData(chart);
-      setActiveTab('create'); // 切换到创建标签查看图表
+      onTabChange?.('create'); // 切换到创建标签查看图表
     } catch (err) {
       setError(typeof err === 'string' ? err : '加载图表失败');
     } finally {
@@ -128,25 +132,9 @@ const ChartManager = ({ dataset }) => {
 
   return (
     <div className="chart-manager">
-      {/* 标签页 */}
-      <div className="chart-tabs">
-        <button
-          className={`tab-button ${activeTab === 'create' ? 'active' : ''}`}
-          onClick={() => setActiveTab('create')}
-        >
-          创建图表
-        </button>
-        <button
-          className={`tab-button ${activeTab === 'gallery' ? 'active' : ''}`}
-          onClick={() => setActiveTab('gallery')}
-        >
-          图表库 {savedCharts.length > 0 && `(${savedCharts.length})`}
-        </button>
-      </div>
-
       {/* 内容区域 */}
       <div className="chart-content">
-        {activeTab === 'create' && (
+        {currentTab === 'create' && (
           <div className="create-chart-view">
             <ChartConfig
               dataset={dataset}
@@ -169,7 +157,7 @@ const ChartManager = ({ dataset }) => {
           </div>
         )}
 
-        {activeTab === 'gallery' && (
+        {currentTab === 'gallery' && (
           <div className="chart-gallery-view">
             {loadingCharts ? (
               <div className="gallery-loading">
@@ -183,7 +171,7 @@ const ChartManager = ({ dataset }) => {
                 <p>创建你的第一个图表开始数据分析吧！</p>
                 <button
                   className="create-first-btn"
-                  onClick={() => setActiveTab('create')}
+                  onClick={() => setCurrentTab('create')}
                 >
                   创建第一个图表
                 </button>
