@@ -27,11 +27,11 @@ const ChartConfig = ({ dataset, onGenerateChart, loading, chartData }) => {
 
   // 图表类型配置
   const chartTypes = [
-    { value: 'bar', label: '柱状图', icon: 'Bar', description: '按类别显示数值对比' },
-    { value: 'pie', label: '饼图', icon: 'Pie', description: '显示各部分占比' },
-    { value: 'timeseries', label: '时间序列', icon: 'TS', description: '显示数据随时间变化' },
-    { value: 'distribution', label: '分布图', icon: 'Dist', description: '显示数值分布情况' },
-    { value: 'heatmap', label: '热力图', icon: 'Heat', description: '显示数值相关性' },
+    { value: 'bar', label: '柱状图', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="4" height="10" fill="currentColor" /><rect x="10" y="6" width="4" height="14" fill="currentColor" /><rect x="16" y="2" width="4" height="18" fill="currentColor" /></svg>, description: '按类别显示数值对比' },
+    { value: 'pie', label: '饼图', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2" /><path d="M12 2 L12 12 L20 12" fill="currentColor" /></svg>, description: '显示各部分占比' },
+    { value: 'timeseries', label: '时间序列', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><polyline points="3,18 8,13 13,16 21,8" fill="none" stroke="currentColor" strokeWidth="2" /><circle cx="3" cy="18" r="2" fill="currentColor" /><circle cx="8" cy="13" r="2" fill="currentColor" /><circle cx="13" cy="16" r="2" fill="currentColor" /><circle cx="21" cy="8" r="2" fill="currentColor" /></svg>, description: '显示数据随时间变化' },
+    { value: 'distribution', label: '分布图', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="4" y="14" width="3" height="6" fill="currentColor" /><rect x="8" y="10" width="3" height="10" fill="currentColor" /><rect x="12" y="6" width="3" height="14" fill="currentColor" /><rect x="16" y="12" width="3" height="8" fill="currentColor" /></svg>, description: '显示数值分布情况' },
+    { value: 'heatmap', label: '热力图', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="6" height="6" rx="1" fill="currentColor" opacity="0.2" /><rect x="12" y="4" width="6" height="6" rx="1" fill="currentColor" opacity="0.6" /><rect x="4" y="12" width="6" height="6" rx="1" fill="currentColor" opacity="0.4" /><rect x="12" y="12" width="6" height="6" rx="1" fill="currentColor" /><rect x="18" y="4" width="6" height="6" rx="1" fill="currentColor" opacity="0.8" /><rect x="18" y="12" width="6" height="6" rx="1" fill="currentColor" opacity="0.3" /></svg>, description: '显示数值相关性' },
   ];
 
   // 图表参数配置

@@ -166,9 +166,8 @@ const ChartManager = ({ dataset, activeTab = 'create', onTabChange }) => {
               </div>
             ) : savedCharts.length === 0 ? (
               <div className="gallery-empty">
-                <div className="empty-icon">Chart</div>
-                <h3>还没有保存的图表</h3>
-                <p>创建你的第一个图表开始数据分析吧！</p>
+                <h3 className="gallery-empty-title">还没有保存的图表</h3>
+                <p className="gallery-empty-description">创建你的第一个图表开始数据分析吧！</p>
                 <button
                   className="create-first-btn"
                   onClick={() => setCurrentTab('create')}

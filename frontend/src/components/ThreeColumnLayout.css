@@ -2,9 +2,9 @@
 .three-column-layout {
   display: grid;
   grid-template-columns: 1fr 1.2fr 1fr;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-sm);
   height: 100vh;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-sm);
   background: transparent;
 }
 
@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: column;
   background-color: var(--cardBG);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   border: var(--keylineBorder);
   overflow: hidden;
   box-shadow: var(--cardShadow);
@@ -193,7 +193,7 @@
 .chat-messages {
   flex: 1;
   overflow-y: auto;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-md);
 }
 
 .chat-empty {
@@ -225,9 +225,8 @@
 .chat-empty-title {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
-  color: var(--systemSecondary);
+  color: var(--systemPrimary);
   margin: 0 0 var(--spacing-md) 0;
-  opacity: 0.6;
 }
 
 .chat-empty-description {
@@ -235,7 +234,6 @@
   color: var(--systemSecondary);
   margin: 0;
   line-height: 1.5;
-  opacity: 0.5;
 }
 
 .chat-message {
@@ -278,15 +276,13 @@
 }
 
 .chat-input-container {
-  padding: var(--spacing-md) var(--spacing-xl);
-  border-top: var(--keylineBorder);
+  padding: var(--spacing-sm) var(--spacing-xl);
   min-height: 56px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  background-color: var(--headerBG);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: transparent;
+  margin-top: -8px;
 }
 
 .chat-input-wrapper {
@@ -305,8 +301,9 @@
   color: var(--systemPrimary);
   font-size: var(--font-size-base);
   transition: var(--transition-fast);
-  height: 40px;
+  height: 44px;
   line-height: 1.5;
+  box-shadow: var(--cardShadow);
 }
 
 .chat-input:focus {
@@ -327,7 +324,7 @@
   align-items: center;
   justify-content: center;
   font-weight: var(--font-weight-medium);
-  height: 40px;
+  height: 44px;
   flex-shrink: 0;
   box-shadow: 0 1px 2px rgba(59, 130, 246, 0.3);
 }
@@ -433,8 +430,8 @@
   justify-content: center;
   margin-left: var(--spacing-md);
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
 }
 
 .agent-add-btn:hover {
@@ -476,13 +473,13 @@
   cursor: pointer;
   transition: var(--transition-fast);
   border-radius: var(--radius-lg);
-  padding: var(--spacing-sm) var(--spacing-lg);
+  padding: var(--spacing-xs) var(--spacing-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
   flex: 1;
-  min-height: 40px;
+  min-height: 32px;
   box-shadow: 0 1px 2px rgba(59, 130, 246, 0.3);
 }
 
@@ -504,7 +501,7 @@
 .editor-content {
   flex: 1;
   overflow-y: auto;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-md);
 }
 
 
@@ -590,7 +587,7 @@
 .charts-view {
   flex: 1;
   overflow-y: auto;
-  padding: var(--spacing-md);
+  padding: var(--spacing-sm);
 }
 
 /* 数据集管理模态框 */
@@ -935,10 +932,10 @@
 .add-cell-btn {
   width: 100%;
   padding: var(--spacing-md) var(--spacing-lg);
-  border: 2px dashed var(--strokeColor);
+  border: none;
   border-radius: var(--radius-lg);
-  background: none;
-  color: var(--systemSecondary);
+  background-color: var(--systemBlue);
+  color: white;
   cursor: pointer;
   transition: var(--transition-fast);
   display: flex;
@@ -947,30 +944,30 @@
   gap: var(--spacing-md);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  min-height: 48px;
+  min-height: 44px;
+  box-shadow: var(--cardShadow);
 }
 
 .add-cell-btn:hover {
-  border-color: var(--systemBlue);
-  color: var(--systemBlue);
-  background-color: var(--systemQuaternary);
+  background-color: var(--systemBlue-hover);
   transform: translateY(-1px);
+  box-shadow: var(--hoverShadow);
 }
 
 .add-icon {
   font-size: var(--font-size-xl);
 }
 
-/* 编辑器底部操作栏 */
+/* 编辑器底部操作栏 - 悬浮效果 */
 .editor-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-md) var(--spacing-xl);
-  border-top: var(--keylineBorder);
-  background-color: var(--headerBG);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   flex-shrink: 0;
   min-height: 56px;
 }

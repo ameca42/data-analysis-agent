@@ -112,6 +112,17 @@
 .chart-type-icon {
   font-size: var(--font-size-2xl);
   margin-bottom: 8px;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-type-icon svg {
+  width: 32px;
+  height: 32px;
+  color: currentColor;
 }
 
 .chart-type-label {

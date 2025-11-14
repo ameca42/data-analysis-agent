@@ -52,7 +52,7 @@
 }
 
 .chart-content {
-  min-height: 400px;
+  min-height: 500px;
 }
 
 .create-chart-view {
@@ -82,8 +82,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-4xl) var(--spacing-2xl);
+  padding: 0 var(--spacing-2xl);
   text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .gallery-loading .loading-spinner {
@@ -107,18 +109,24 @@
   opacity: 0.5;
 }
 
-.gallery-empty h3 {
+.gallery-empty h3,
+.gallery-empty-title {
   margin: 0 0 var(--spacing-md) 0;
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
   color: var(--systemPrimary);
+  width: 100%;
+  text-align: center;
 }
 
-.gallery-empty p {
+.gallery-empty p,
+.gallery-empty-description {
   margin: 0 0 var(--spacing-xl) 0;
   font-size: var(--font-size-base);
   color: var(--systemSecondary);
   line-height: 1.5;
+  width: 100%;
+  text-align: center;
 }
 
 .create-first-btn {
